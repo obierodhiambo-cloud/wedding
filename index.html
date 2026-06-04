@@ -156,6 +156,10 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 .registry-item:hover{transform:translateY(-3px);}
 .registry-img{background:var(--parchment);height:140px;display:flex;align-items:center;justify-content:center;}
 .registry-img svg{width:36px;height:36px;stroke:var(--muted);fill:none;stroke-width:1.5;opacity:.5;}
+
+.registry-img img{width:100%;height:100%;object-fit:contain;display:block;padding:.75rem;background:var(--warm-white);}
+.registry-item.featured .registry-img{height:170px;background:var(--warm-white);}
+.registry-note{font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:.75rem;}
 .registry-body{padding:1.25rem;}
 .registry-category{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-light);margin-bottom:4px;}
 .registry-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem;}
@@ -318,12 +322,12 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
         <div><p class="venue-label">Ceremony</p><h3 class="venue-title">Wedding Ceremony Venue</h3></div>
       </div>
       <div class="venue-details">
-        <div><p class="venue-detail-key">Date</p><p class="venue-detail-val">Friday, 18 September 2026</p></div>
-        <div><p class="venue-detail-key">Time</p><p class="venue-detail-val">11 AM</p></div>
-        <div><p class="venue-detail-key">Venue</p><p class="venue-detail-val">Marist International University College</p></div>
-        <div><p class="venue-detail-key">Location</p><p class="venue-detail-val">Karen</p></div>
+        <div><p class="venue-detail-key">Date</p><p class="venue-detail-val">Thursday, 18 September 2026</p></div>
+        <div><p class="venue-detail-key">Time</p><p class="venue-detail-val">Add ceremony time here</p></div>
+        <div><p class="venue-detail-key">Venue</p><p class="venue-detail-val">Add venue name here</p></div>
+        <div><p class="venue-detail-key">Location</p><p class="venue-detail-val">Add address here</p></div>
       </div>
-      <p class="venue-note">Dress Code: African with a tone of earth.</p>
+      <p class="venue-note">Add directions, dress code, or any other notes for your guests here.</p>
     </div>
     <div class="venue-card">
       <div class="venue-card-header">
@@ -331,9 +335,10 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
         <div><p class="venue-label">Reception</p><h3 class="venue-title">Reception Venue</h3></div>
       </div>
       <div class="venue-details">
-        <div><p class="venue-detail-key">Time</p><p class="venue-detail-val">1:00 PM</p></div>
-        <div><p class="venue-detail-key">Venue</p><p class="venue-detail-val">Marist International University</p></div>
+        <div><p class="venue-detail-key">Time</p><p class="venue-detail-val">Add reception time here</p></div>
+        <div><p class="venue-detail-key">Venue</p><p class="venue-detail-val">Add reception venue here</p></div>
       </div>
+      <p class="venue-note">Update with reception details if different from the ceremony venue.</p>
     </div>
   </div>
 </div>
@@ -350,7 +355,7 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 
     <div class="rsvp-form">
       <h3 class="rsvp-form-title">Your RSVP</h3>
-      <p class="rsvp-form-sub">Kindly respond by [1st August 2026]</p>
+      <p class="rsvp-form-sub">Kindly respond by [add date here]</p>
 
       <div class="form-row">
         <div class="form-group">
@@ -509,7 +514,7 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 
     <div style="background:var(--cream);border:1px solid var(--parchment);padding:2rem;text-align:center;">
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:.5rem;">Prefer to give directly?</p>
-      <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">You can contribute via M-Pesa through our Till Number:3425862. Details will be shared with you upon request — reach out to the family directly or send a message through the pledge form above.</p>
+      <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">You can contribute via M-Pesa or bank transfer. Details will be shared with you upon request — reach out to the family directly or send a message through the pledge form above.</p>
     </div>
   </div>
 </div>
@@ -522,14 +527,47 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
     <div class="section-rule"></div>
   </div>
   <div class="registry-container">
-    <p class="registry-intro">As we begin building a home together, there are things we need and things we dream about. If you would like to bless us with a gift, here are a few ideas — but truly, your presence is more than enough.</p>
+    <p class="registry-intro">As we begin building a home together, there are household items that would be a meaningful blessing. If you would like to gift one of these, kindly reach out so we can mark it as taken.</p>
+
     <div class="registry-grid">
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"/><path d="M12 3v6"/></svg></div><div class="registry-body"><p class="registry-category">Kitchen</p><h4 class="registry-name">Dinner Set (6 people)</h4><p class="registry-price">Add price / brand here</p><span class="registry-status"><span class="registry-status-dot"></span>Available</span></div></div>
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div><div class="registry-body"><p class="registry-category">Home</p><h4 class="registry-name">Bedding Set — King Size</h4><p class="registry-price">Add price / brand here</p><span class="registry-status"><span class="registry-status-dot"></span>Available</span></div></div>
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="registry-body"><p class="registry-category">Kitchen</p><h4 class="registry-name">Coffee &amp; Tea Maker</h4><p class="registry-price">Add price / brand here</p><span class="registry-status gifted"><span class="registry-status-dot"></span>Gifted</span></div></div>
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="registry-body"><p class="registry-category">Experiences</p><h4 class="registry-name">Honeymoon Contribution</h4><p class="registry-price">Any amount welcomed</p><span class="registry-status"><span class="registry-status-dot"></span>Available</span></div></div>
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="registry-body"><p class="registry-category">Home</p><h4 class="registry-name">Wall Art / Décor Piece</h4><p class="registry-price">Add price / preference here</p><span class="registry-status"><span class="registry-status-dot"></span>Available</span></div></div>
-      <div class="registry-item"><div class="registry-img"><svg viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3z"/></svg></div><div class="registry-body"><p class="registry-category">Home</p><h4 class="registry-name">Add Your Own Item</h4><p class="registry-price">Price here</p><span class="registry-status"><span class="registry-status-dot"></span>Available</span></div></div>
+      <div class="registry-item featured">
+        <div class="registry-img">
+          <img src="images/registry-microwave-hisense.png" alt="Hisense Microwave">
+        </div>
+        <div class="registry-body">
+          <p class="registry-category">Kitchen Appliance</p>
+          <h4 class="registry-name">Hisense Microwave</h4>
+          <p class="registry-price">KES 12,000</p>
+          <span class="registry-status"><span class="registry-status-dot"></span>Available</span>
+          <p class="registry-note">Useful for reheating, quick meals, and daily kitchen convenience.</p>
+        </div>
+      </div>
+
+      <div class="registry-item featured">
+        <div class="registry-img">
+          <img src="images/registry-von-cooker.webp" alt="Von Cooker">
+        </div>
+        <div class="registry-body">
+          <p class="registry-category">Kitchen Appliance</p>
+          <h4 class="registry-name">Von Cooker</h4>
+          <p class="registry-price">KES 49,000</p>
+          <span class="registry-status"><span class="registry-status-dot"></span>Available</span>
+          <p class="registry-note">A practical cooking essential for setting up the new home.</p>
+        </div>
+      </div>
+
+      <div class="registry-item featured">
+        <div class="registry-img">
+          <img src="images/registry-von-fridge.webp" alt="Von Fridge">
+        </div>
+        <div class="registry-body">
+          <p class="registry-category">Home Appliance</p>
+          <h4 class="registry-name">Von Fridge</h4>
+          <p class="registry-price">KES 49,000</p>
+          <span class="registry-status"><span class="registry-status-dot"></span>Available</span>
+          <p class="registry-note">A core household item for food storage and day-to-day home life.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

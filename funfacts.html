@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Facts | Wahito &amp; Obiero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FAF7F2;
+      --warm:    #F2EBE0;
+      --gold:    #B8965A;
+      --gold-lt: #D4AF78;
+      --brown:   #6B4F3A;
+      --text:    #3A2E28;
+      --muted:   #9C8878;
+      --correct: #5A8A6A;
+      --wrong:   #A05050;
+      --radius:  12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+    }
+    .hero::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold-lt));
+      margin: 0 auto 2rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--brown);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .score-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--warm);
+      border: 1px solid rgba(184, 150, 90, 0.25);
+      border-radius: 50px;
+      padding: 0.55rem 1.4rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--brown);
+    }
+    .score-bar strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 720px;
+      margin: 0 auto 0.5rem;
+      padding: 0 1.5rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184, 150, 90, 0.3), transparent);
+    }
+    .divider span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold-lt);
+    }
+
+    /* QUESTIONS */
+    .questions {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(184, 150, 90, 0.18);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 18px rgba(107, 79, 58, 0.05);
+      transition: box-shadow 0.3s;
+    }
+    .card:hover { box-shadow: 0 4px 28px rgba(107, 79, 58, 0.1); }
+    .card-header {
+      padding: 1.6rem 1.8rem 1rem;
+      border-bottom: 1px solid rgba(184, 150, 90, 0.12);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .card-number {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 1px solid var(--gold-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-top: 0.1rem;
+    }
+    .card-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.22rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--brown);
+    }
+    .card-body { padding: 1.2rem 1.8rem 1.6rem; }
+
+    /* CHOICES — used for all questions */
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .choice-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      width: 100%;
+      background: var(--cream);
+      border: 1px solid rgba(184, 150, 90, 0.22);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+      text-align: left;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .choice-btn:hover:not(:disabled) {
+      background: var(--warm);
+      border-color: var(--gold-lt);
+    }
+    .choice-btn:disabled { cursor: default; }
+    .choice-letter {
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      border: 1px solid var(--gold-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: background 0.2s, color 0.2s;
+    }
+    .choice-btn.state-correct {
+      background: rgba(90, 138, 106, 0.08);
+      border-color: var(--correct);
+    }
+    .choice-btn.state-correct .choice-letter {
+      background: var(--correct);
+      color: #fff;
+      border-color: var(--correct);
+    }
+    .choice-btn.state-wrong {
+      background: rgba(160, 80, 80, 0.07);
+      border-color: var(--wrong);
+      opacity: 0.7;
+    }
+    .choice-btn.state-wrong .choice-letter {
+      background: var(--wrong);
+      color: #fff;
+      border-color: var(--wrong);
+    }
+    .choice-btn.state-reveal {
+      background: rgba(90, 138, 106, 0.06);
+      border-color: var(--correct);
+    }
+    .choice-btn.state-reveal .choice-letter {
+      background: var(--correct);
+      color: #fff;
+      border-color: var(--correct);
+    }
+
+    /* FEEDBACK */
+    .answer-feedback {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--brown);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .answer-feedback.visible { display: block; animation: fadeIn 0.35s ease; }
+    .answer-feedback.fb-correct { background: rgba(90,138,106,0.07); border-left: 3px solid var(--correct); }
+    .answer-feedback.fb-wrong   { background: rgba(160,80,80,0.07);  border-left: 3px solid var(--wrong); }
+    .answer-feedback.fb-neutral { background: var(--warm);           border-left: 3px solid var(--gold); }
+
+    /* RESULT BANNER */
+    .result-banner {
+      display: none;
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+    }
+    .result-banner.visible { display: block; animation: fadeIn 0.5s ease; }
+    .result-banner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+    .result-banner p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
+    .final-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin: 0.75rem 0 0.4rem;
+    }
+    .retry-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .retry-btn:hover { background: var(--brown); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      border-top: 1px solid rgba(184, 150, 90, 0.12);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { padding: 3.5rem 1.2rem 2.5rem; }
+      .card-header, .card-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">W &amp; O</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="funfacts.html" class="active">Fun Facts</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">18 September 2026</p>
+    <h1 class="hero-title">How well do you know<br /><em>Wahito &amp; Obiero?</em></h1>
+    <p class="hero-sub">Four questions. A few surprises. Let's find out how much you have been paying attention.</p>
+    <div class="score-bar">
+      Score: <strong id="scoreDisplay">0</strong> / <span id="totalDisplay">4</span>
+    </div>
+  </section>
+
+  <div class="divider"><span>&#10022;</span></div>
+
+  <div class="questions" id="quizContainer">
+
+    <!-- Q1 -->
+    <div class="card" id="card-q1">
+      <div class="card-header">
+        <div class="card-number">1</div>
+        <p class="card-question">
+          Wahito and Obiero were both born in the same year &mdash; almost the same month. But one of them arrived earlier, by exactly one month and one day. Who came first?
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="choices" id="choices-q1">
+          <button class="choice-btn" data-q="q1" data-correct="true">
+            <span class="choice-letter">A</span> Obiero
+          </button>
+          <button class="choice-btn" data-q="q1" data-correct="false">
+            <span class="choice-letter">B</span> Wahito
+          </button>
+        </div>
+        <div class="answer-feedback" id="fb-q1"></div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card" id="card-q2">
+      <div class="card-header">
+        <div class="card-number">2</div>
+        <p class="card-question">
+          One of them loves exploring new places on dates, while the other would happily visit Chicken Inn until the Lord returns. Who loves to explore?
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="choices" id="choices-q2">
+          <button class="choice-btn" data-q="q2" data-correct="false">
+            <span class="choice-letter">A</span> Obiero
+          </button>
+          <button class="choice-btn" data-q="q2" data-correct="true">
+            <span class="choice-letter">B</span> Wahito
+          </button>
+        </div>
+        <div class="answer-feedback" id="fb-q2"></div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card" id="card-q3">
+      <div class="card-header">
+        <div class="card-number">3</div>
+        <p class="card-question">
+          Both Wahito and Obiero are lovers of art. Which of the following art forms do <em>both</em> of them enjoy?
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="choices" id="choices-q3">
+          <button class="choice-btn" data-q="q3" data-correct="true">
+            <span class="choice-letter">A</span> Music
+          </button>
+          <button class="choice-btn" data-q="q3" data-correct="false">
+            <span class="choice-letter">B</span> Dance
+          </button>
+          <button class="choice-btn" data-q="q3" data-correct="false">
+            <span class="choice-letter">C</span> Spontaneous bubble blowing
+          </button>
+        </div>
+        <div class="answer-feedback" id="fb-q3"></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="card" id="card-q4">
+      <div class="card-header">
+        <div class="card-number">4</div>
+        <p class="card-question">
+          When they first met, one of them thought the other was far too serious for life. Who had that impression?
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="choices" id="choices-q4">
+          <button class="choice-btn" data-q="q4" data-correct="true">
+            <span class="choice-letter">A</span> Obiero (thought Wahito was too serious)
+          </button>
+          <button class="choice-btn" data-q="q4" data-correct="false">
+            <span class="choice-letter">B</span> Wahito (thought Obiero was too serious)
+          </button>
+        </div>
+        <div class="answer-feedback" id="fb-q4"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="result-banner" id="resultBanner">
+    <p>Your final score</p>
+    <div class="final-score" id="finalScore">-</div>
+    <h2 id="resultHeading"></h2>
+    <p id="resultMessage"></p>
+    <button class="retry-btn" id="retryBtn">Try Again</button>
+  </div>
+
+  <footer>
+    <p>With love &mdash; <a href="index.html">Wahito &amp; Obiero &middot; 18.09.2026</a></p>
+  </footer>
+
+  <script>
+    var TOTAL = 4;
+    var score = 0;
+    var answered = {};
+
+    var feedback = {
+      q1: {
+        correct: 'Correct! Obiero was born on 24 January, giving him a one-month, one-day head start over Wahito, who arrived on 25 February. He is technically the elder. He will never let her forget it.',
+        wrong:   'Not quite! It was Obiero who came first, born on 24 January. Wahito followed on 25 February. He is technically the elder.'
+      },
+      q2: {
+        correct: 'Correct! Wahito is the adventurous one who loves to explore. Obiero, on the other hand, has a standing, unconditional loyalty to Chicken Inn.',
+        wrong:   'Not quite! Wahito is the explorer. Obiero is perfectly content returning to Chicken Inn indefinitely.'
+      },
+      q3: {
+        correct: 'Correct! Music is the art form they both share. A thread woven through both of them.',
+        wrong:   'Not quite! The answer is Music. Both Wahito and Obiero share a love for it.'
+      },
+      q4: {
+        correct: 'Correct! Obiero thought Wahito was too serious. Meanwhile, Wahito felt Obiero kept looking at her. (He was.) Between a stare and a judgment, a love story quietly began.',
+        wrong:   'Not quite! It was Obiero who thought Wahito was too serious. And Wahito was quietly noticing that Obiero kept looking at her. The rest is history.'
+      }
+    };
+
+    function handleChoice(btn) {
+      var q = btn.getAttribute('data-q');
+      if (answered[q]) return;
+      answered[q] = true;
+
+      var isCorrect = btn.getAttribute('data-correct') === 'true';
+      var container = document.getElementById('choices-' + q);
+      var fb = document.getElementById('fb-' + q);
+      var allBtns = container.querySelectorAll('.choice-btn');
+
+      allBtns.forEach(function(b) {
+        b.disabled = true;
+      });
+
+      if (isCorrect) {
+        btn.classList.add('state-correct');
+        fb.textContent = feedback[q].correct;
+        fb.className = 'answer-feedback visible fb-correct';
+        score++;
+        document.getElementById('scoreDisplay').textContent = score;
+      } else {
+        btn.classList.add('state-wrong');
+        allBtns.forEach(function(b) {
+          if (b.getAttribute('data-correct') === 'true') {
+            b.classList.add('state-reveal');
+          }
+        });
+        fb.textContent = feedback[q].wrong;
+        fb.className = 'answer-feedback visible fb-wrong';
+      }
+
+      if (Object.keys(answered).length === TOTAL) {
+        setTimeout(showResult, 600);
+      }
+    }
+
+    function showResult() {
+      var banner = document.getElementById('resultBanner');
+      document.getElementById('finalScore').textContent = score + ' / ' + TOTAL;
+
+      var heading, message;
+      if (score === TOTAL) {
+        heading = 'You know them well!';
+        message = 'A perfect score. You clearly pay attention — or you were there for all of it.';
+      } else if (score >= 2) {
+        heading = 'Not bad at all!';
+        message = 'You know a good amount about these two. Come back after the wedding and see how much more you learn.';
+      } else {
+        heading = 'More to discover!';
+        message = 'There is still plenty to learn about Wahito and Obiero. The wedding is a great place to start.';
+      }
+
+      document.getElementById('resultHeading').textContent = heading;
+      document.getElementById('resultMessage').textContent = message;
+      banner.classList.add('visible');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetQuiz() {
+      score = 0;
+      answered = {};
+      document.getElementById('scoreDisplay').textContent = '0';
+      document.getElementById('resultBanner').classList.remove('visible');
+
+      var allBtns = document.querySelectorAll('.choice-btn');
+      allBtns.forEach(function(btn) {
+        btn.disabled = false;
+        btn.classList.remove('state-correct', 'state-wrong', 'state-reveal');
+      });
+
+      var allFb = document.querySelectorAll('.answer-feedback');
+      allFb.forEach(function(el) {
+        el.className = 'answer-feedback';
+        el.textContent = '';
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Wire up all choice buttons
+    document.querySelectorAll('.choice-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { handleChoice(btn); });
+    });
+
+    document.getElementById('retryBtn').addEventListener('click', resetQuiz);
+    document.getElementById('totalDisplay').textContent = TOTAL;
+  </script>
+
+</body>
+</html>

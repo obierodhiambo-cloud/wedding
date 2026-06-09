@@ -156,7 +156,6 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 .registry-item:hover{transform:translateY(-3px);}
 .registry-img{background:var(--parchment);height:140px;display:flex;align-items:center;justify-content:center;}
 .registry-img svg{width:36px;height:36px;stroke:var(--muted);fill:none;stroke-width:1.5;opacity:.5;}
-
 .registry-img img{width:100%;height:100%;object-fit:contain;display:block;padding:.75rem;background:var(--warm-white);}
 .registry-item.featured .registry-img{height:170px;background:var(--warm-white);}
 .registry-note{font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:.75rem;}
@@ -168,20 +167,23 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 .registry-status.gifted{background:#D4E8D0;color:#3A6B35;}
 .registry-status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7;}
 
+/* ── FUN FACTS OVERLAY ── */
+#page-funfacts{background:var(--warm-white);}
+.funfacts-frame-wrap{width:100%;min-height:calc(100vh - 56px);}
+.funfacts-frame-wrap iframe{width:100%;min-height:calc(100vh - 56px);border:none;display:block;}
+
 /* MOBILE BOTTOM NAV */
-.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(251,246,238,0.97);backdrop-filter:blur(8px);border-top:1px solid var(--parchment);display:none;justify-content:space-around;align-items:stretch;height:58px;padding-bottom:env(safe-area-inset-bottom);}
+.mobile-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(251,246,238,0.97);backdrop-filter:blur(8px);border-top:1px solid var(--parchment);justify-content:space-around;align-items:stretch;height:58px;padding-bottom:env(safe-area-inset-bottom);}
 .mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;cursor:pointer;padding:.25rem 0;color:var(--muted);transition:color .2s;}
 .mob-nav-btn.active{color:var(--terra);}
 .mob-nav-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;}
 .mob-nav-btn span{font-size:.55rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;}
-/* back arrow on mobile pages */
 .mobile-back{display:none;align-items:center;gap:.5rem;padding:.75rem 1.5rem;font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;}
 .mobile-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;}
 @media(max-width:640px){
   .mobile-bottom-nav{display:flex;}
   .page{padding-bottom:70px;}
   .mobile-back{display:flex;}
-
   .nav-links{display:none;}
   .story-timeline::before{left:20px;}
   .story-item{grid-template-columns:40px 1fr;grid-template-rows:auto auto;}
@@ -198,13 +200,14 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 <body>
 
 <nav>
-  <div class="nav-brand">Obiero & Wahito</div>
+  <div class="nav-brand">Obiero &amp; Wahito</div>
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('home');return false;">Home</a></li>
     <li><a href="#" onclick="showPage('story');return false;">Our Story</a></li>
-    <li><a href="#" onclick="showPage('details');return false;">When & Where</a></li>
+    <li><a href="#" onclick="showPage('details');return false;">When &amp; Where</a></li>
     <li><a href="#" onclick="showPage('support');return false;">Support Us</a></li>
     <li><a href="#" onclick="showPage('registry');return false;">Gifts</a></li>
+    <li><a href="#" onclick="showPage('funfacts');return false;">Fun Facts</a></li>
   </ul>
 </nav>
 
@@ -236,8 +239,9 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
   </div>
   <div class="hero-cta">
     <button class="btn btn-primary" onclick="showPage('story')">Our Story</button>
-    <button class="btn btn-outline" onclick="showPage('details')">When & Where</button>
+    <button class="btn btn-outline" onclick="showPage('details')">When &amp; Where</button>
     <button class="btn btn-outline" onclick="showPage('support')">Support Us</button>
+    <button class="btn btn-outline" onclick="showPage('funfacts')">Fun Facts</button>
   </div>
 </div>
 
@@ -248,10 +252,8 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
     <h2 class="section-title">Our <em>Story</em></h2>
     <div class="section-rule"></div>
   </div>
-
   <div class="story-container">
     <div class="story-timeline">
-
       <div class="story-item">
         <div class="story-content">
           <p class="story-year">How We Met</p>
@@ -261,7 +263,6 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
         <div class="story-dot"></div>
         <div class="story-image-wrap"><img id="si1" src="" alt="Obiero and Wahito — how they met"></div>
       </div>
-
       <div class="story-item">
         <div class="story-content">
           <p class="story-year">Growing Together</p>
@@ -271,30 +272,26 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
         <div class="story-dot"></div>
         <div class="story-image-wrap"><img id="si2" src="" alt="Obiero and Wahito — growing together"></div>
       </div>
-
       <div class="story-item">
         <div class="story-content">
           <p class="story-year">The Friendship</p>
-          <h3 class="story-heading">Joy, Laughter & a Little Pain</h3>
+          <h3 class="story-heading">Joy, Laughter &amp; a Little Pain</h3>
           <p class="story-text">The friendship grew, and eventually it led them to decide that perhaps it would be best if they lived life together, trusting God for the foreseeable future as they intertwined their lives. The journey has been filled with joy, laughter, and some pain — though that last part is, of course, entirely Obie's fault.</p>
         </div>
         <div class="story-dot"></div>
         <div class="story-image-wrap"><img id="si3" src="" alt="Obiero and Wahito — friendship"></div>
       </div>
-
       <div class="story-item">
         <div class="story-content">
-          <p class="story-year">Today & Always</p>
+          <p class="story-year">Today &amp; Always</p>
           <h3 class="story-heading">For His Glory</h3>
           <p class="story-text">All in all, a striving to reflect God's glory in everything they do. So with much joy, they thank God for where He is leading, and pray for more grace as they take this next step — together, before Him, and before the people they love.</p>
         </div>
         <div class="story-dot"></div>
         <div class="story-image-wrap"><img id="si4" src="" alt="Obiero and Wahito — today"></div>
       </div>
-
     </div>
   </div>
-
   <div style="max-width:920px;margin:0 auto;padding:0 2rem;">
     <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--muted);text-align:center;margin-bottom:1.5rem;">A few more moments along the way</p>
   </div>
@@ -306,7 +303,7 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
 <div id="page-details" class="page">
   <div class="section-header">
     <p class="section-eyebrow">Mark your calendars</p>
-    <h2 class="section-title">When <em>&</em> Where</h2>
+    <h2 class="section-title">When <em>&amp;</em> Where</h2>
     <div class="section-rule"></div>
   </div>
   <div class="details-container">
@@ -350,12 +347,10 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
     <div class="section-rule"></div>
   </div>
   <div class="rsvp-container">
-    <p class="rsvp-intro">Please let us know whether you'll be joining us to celebrate. Fill in your details below and let us know if you'll be bringing a plus one.</p>
-
+    <p class="rsvp-intro">Please let us know whether you will be joining us to celebrate. Fill in your details below and let us know if you will be bringing a plus one.</p>
     <div class="rsvp-form">
       <h3 class="rsvp-form-title">Your RSVP</h3>
       <p class="rsvp-form-sub">Kindly respond by [add date here]</p>
-
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Full Name *</label>
@@ -366,14 +361,12 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
           <input type="tel" class="form-input" id="rsvp-phone" placeholder="+254 700 000 000">
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group full">
           <label class="form-label">Email (optional)</label>
           <input type="email" class="form-input" id="rsvp-email" placeholder="your@email.com">
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group full">
           <label class="form-label">Will you be attending? *</label>
@@ -383,7 +376,6 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
           </div>
         </div>
       </div>
-
       <div class="plus-one-section" id="plus-one-section">
         <div class="form-row">
           <div class="form-group full">
@@ -401,18 +393,15 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
           </div>
         </div>
       </div>
-
       <div class="form-row" style="margin-top:1rem;">
         <div class="form-group full">
           <label class="form-label">Any dietary requirements or notes?</label>
           <textarea class="form-input" id="rsvp-notes" placeholder="Let us know of any allergies, dietary needs, or anything else..."></textarea>
         </div>
       </div>
-
       <button class="form-submit" onclick="submitRSVP()">Send My RSVP</button>
-      <p class="pledge-note">Your RSVP will be recorded. We'll be in touch with any updates closer to the day.</p>
+      <p class="pledge-note">Your RSVP will be recorded. We will be in touch with any updates closer to the day.</p>
       <div class="success-banner" id="rsvp-success">Thank you! Your RSVP has been received. Obiero &amp; Wahito can't wait to celebrate with you.</div>
-
       <div class="guest-list-section">
         <h4 class="guest-list-title">Guest List</h4>
         <div class="upload-zone" onclick="document.getElementById('excel-upload').click()">
@@ -443,11 +432,9 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
   </div>
   <div class="support-container">
     <p class="support-intro">Your presence and prayers are the greatest gift. But if you feel moved to bless our new home and celebrate with us in a tangible way, we are deeply grateful for every contribution — large or small.</p>
-
     <div class="pledge-form">
       <h3 class="pledge-form-title">Make a Pledge</h3>
       <p class="pledge-form-sub">Fill in your details and we'll be in touch. All pledges are recorded with love and gratitude.</p>
-
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Full Name *</label>
@@ -502,7 +489,7 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
       </div>
       <div class="form-row">
         <div class="form-group full">
-          <label class="form-label">Message or Encouragement to us (optional)</label>
+          <label class="form-label">Message or encouragement (optional)</label>
           <textarea class="form-input" id="pledge-message" placeholder="Share a prayer, a blessing, or a word of encouragement..."></textarea>
         </div>
       </div>
@@ -510,7 +497,6 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
       <p class="pledge-note">Your pledge will be noted — you will be contacted with payment details closer to the day.</p>
       <div class="success-banner" id="pledge-success">Thank you! Your pledge has been recorded. Obiero &amp; Wahito are so grateful for your love.</div>
     </div>
-
     <div style="background:var(--cream);border:1px solid var(--parchment);padding:2rem;text-align:center;">
       <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:.5rem;">Prefer to give directly?</p>
       <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">You can contribute via M-Pesa or bank transfer. Details will be shared with you upon request — reach out to the family directly or send a message through the pledge form above.</p>
@@ -527,12 +513,9 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
   </div>
   <div class="registry-container">
     <p class="registry-intro">As we begin building a home together, there are household items that would be a meaningful blessing. If you would like to gift one of these, kindly reach out so we can mark it as taken.</p>
-
     <div class="registry-grid">
       <div class="registry-item featured">
-        <div class="registry-img">
-          <img src="images/registry-microwave-hisense.png" alt="Hisense Microwave">
-        </div>
+        <div class="registry-img"><img src="images/registry-microwave-hisense.png" alt="Hisense Microwave"></div>
         <div class="registry-body">
           <p class="registry-category">Kitchen Appliance</p>
           <h4 class="registry-name">Hisense Microwave</h4>
@@ -541,11 +524,8 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
           <p class="registry-note">Useful for reheating, quick meals, and daily kitchen convenience.</p>
         </div>
       </div>
-
       <div class="registry-item featured">
-        <div class="registry-img">
-          <img src="images/registry-von-cooker.webp" alt="Von Cooker">
-        </div>
+        <div class="registry-img"><img src="images/registry-von-cooker.webp" alt="Von Cooker"></div>
         <div class="registry-body">
           <p class="registry-category">Kitchen Appliance</p>
           <h4 class="registry-name">Von Cooker</h4>
@@ -554,11 +534,8 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
           <p class="registry-note">A practical cooking essential for setting up the new home.</p>
         </div>
       </div>
-
       <div class="registry-item featured">
-        <div class="registry-img">
-          <img src="images/registry-von-fridge.webp" alt="Von Fridge">
-        </div>
+        <div class="registry-img"><img src="images/registry-von-fridge.webp" alt="Von Fridge"></div>
         <div class="registry-body">
           <p class="registry-category">Home Appliance</p>
           <h4 class="registry-name">Von Fridge</h4>
@@ -571,41 +548,39 @@ table.guest-table tr:nth-child(even) td{background:var(--cream);}
   </div>
 </div>
 
+<!-- FUN FACTS — loads funfacts.html in a seamless iframe -->
+<div id="page-funfacts" class="page">
+  <div class="funfacts-frame-wrap">
+    <iframe id="funfacts-iframe" src="" title="Fun Facts — Wahito &amp; Obiero" loading="lazy"></iframe>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-const PHOTOS=[
-  'images/p1.jpg',
-  'images/p2.jpg',
-  'images/p3.jpg',
-  'images/p4.jpg',
-  'images/p5.jpg',
-  'images/p6.jpg',
-  'images/p7.jpg',
-  'images/p8.jpg',
-  'images/p9.jpg'
+var PHOTOS = [
+  'images/p1.jpg','images/p2.jpg','images/p3.jpg',
+  'images/p4.jpg','images/p5.jpg','images/p6.jpg',
+  'images/p7.jpg','images/p8.jpg','images/p9.jpg'
 ];
 
-// Assign story photos
-document.getElementById('si1').src = PHOTOS[0]; // museum selfie
-document.getElementById('si2').src = PHOTOS[2]; // restaurant smiling
-document.getElementById('si3').src = PHOTOS[5]; // Jan 2026 smiling
-document.getElementById('si4').src = PHOTOS[8]; // night street
+document.getElementById('si1').src = PHOTOS[0];
+document.getElementById('si2').src = PHOTOS[2];
+document.getElementById('si3').src = PHOTOS[5];
+document.getElementById('si4').src = PHOTOS[8];
 
-// Build gallery strip (all photos)
-const strip = document.getElementById('gallery-strip');
-PHOTOS.forEach((src, i) => {
-  const div = document.createElement('div');
+var strip = document.getElementById('gallery-strip');
+PHOTOS.forEach(function(src, i) {
+  var div = document.createElement('div');
   div.className = 'gallery-thumb';
-  const img = document.createElement('img');
+  var img = document.createElement('img');
   img.src = src;
-  img.alt = 'Obiero & Wahito photo ' + (i+1);
-  img.onclick = () => openLightbox(i);
+  img.alt = 'Obiero & Wahito photo ' + (i + 1);
+  img.onclick = function() { openLightbox(i); };
   div.appendChild(img);
   strip.appendChild(div);
 });
 
-// Lightbox
-let lbIndex = 0;
+var lbIndex = 0;
 function openLightbox(i) {
   lbIndex = i;
   document.getElementById('lb-img').src = PHOTOS[i];
@@ -622,144 +597,145 @@ function lbNav(dir) {
   document.getElementById('lb-img').src = PHOTOS[lbIndex];
 }
 
-// Page nav
-const PAGE_HISTORY = ['home'];
+var PAGE_HISTORY = ['home'];
 function showPage(name) {
-  const current = PAGE_HISTORY[PAGE_HISTORY.length - 1];
+  var current = PAGE_HISTORY[PAGE_HISTORY.length - 1];
   if (current !== name) PAGE_HISTORY.push(name);
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const t = document.getElementById('page-' + name);
-  if (t) { t.classList.add('active'); window.scrollTo(0,0); }
-  // Update mobile nav active state
-  ['home','story','details','support','registry'].forEach(p => {
-    const btn = document.getElementById('mob-' + p);
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var t = document.getElementById('page-' + name);
+  if (t) { t.classList.add('active'); window.scrollTo(0, 0); }
+  // Lazy-load the iframe only when Fun Facts is first visited
+  if (name === 'funfacts') {
+    var frame = document.getElementById('funfacts-iframe');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = 'funfacts.html';
+    }
+  }
+  ['home','story','details','support','registry','funfacts'].forEach(function(p) {
+    var btn = document.getElementById('mob-' + p);
     if (btn) btn.classList.toggle('active', p === name);
   });
 }
 
-// Countdown
-const wedding = new Date('2026-09-18T10:00:00');
+var wedding = new Date('2026-09-18T10:00:00');
 function updateCd() {
-  const diff = wedding - new Date();
-  const d = Math.max(0, Math.floor(diff/86400000));
-  const h = Math.max(0, Math.floor((diff%86400000)/3600000));
-  const m = Math.max(0, Math.floor((diff%3600000)/60000));
-  const s = Math.max(0, Math.floor((diff%60000)/1000));
-  const p = n => String(n).padStart(2,'0');
-  ['h-days','cd-days'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=d; });
-  ['h-hours','cd-hours'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=p(h); });
-  ['h-mins','cd-mins'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=p(m); });
-  ['h-secs','cd-secs'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=p(s); });
+  var diff = wedding - new Date();
+  var d = Math.max(0, Math.floor(diff / 86400000));
+  var h = Math.max(0, Math.floor((diff % 86400000) / 3600000));
+  var m = Math.max(0, Math.floor((diff % 3600000) / 60000));
+  var s = Math.max(0, Math.floor((diff % 60000) / 1000));
+  function p(n) { return String(n).padStart(2, '0'); }
+  ['h-days','cd-days'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = d; });
+  ['h-hours','cd-hours'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = p(h); });
+  ['h-mins','cd-mins'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = p(m); });
+  ['h-secs','cd-secs'].forEach(function(id) { var el = document.getElementById(id); if (el) el.textContent = p(s); });
 }
-updateCd(); setInterval(updateCd, 1000);
+updateCd();
+setInterval(updateCd, 1000);
 
-// Amount chips
 function selectAmount(el, val) {
-  document.querySelectorAll('.amount-chip').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.amount-chip').forEach(function(c) { c.classList.remove('active'); });
   el.classList.add('active');
-  const inp = document.getElementById('pledge-amount');
+  var inp = document.getElementById('pledge-amount');
   if (val !== 'other') { inp.value = val; } else { inp.value = ''; inp.focus(); }
 }
 
-// Pledge submit
 function submitPledge() {
-  const name = document.getElementById('pledge-name').value.trim();
-  const amount = document.getElementById('pledge-amount').value.trim();
+  var name = document.getElementById('pledge-name').value.trim();
+  var amount = document.getElementById('pledge-amount').value.trim();
   if (!name) { alert('Please enter your name.'); return; }
   if (!amount) { alert('Please enter or select a pledge amount.'); return; }
-  const reminderWhen = document.getElementById('pledge-reminder-when').value;
-  const reminderHowEl = document.querySelector('input[name="reminder-how"]:checked');
-  const reminderHow = reminderHowEl ? reminderHowEl.value : '';
+  var reminderWhen = document.getElementById('pledge-reminder-when').value;
+  var reminderHowEl = document.querySelector('input[name="reminder-how"]:checked');
+  var reminderHow = reminderHowEl ? reminderHowEl.value : '';
   fetch('https://script.google.com/macros/s/AKfycby2kSIPO0aPtz0MXV1ru7hBRvCk7Loi1RTkiPek44TDHPNsATOgWJjwwOTBKZfijtOu/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify({ type: 'pledge', name, phone: document.getElementById('pledge-phone').value, amount, reminderWhen, reminderHow, message: document.getElementById('pledge-message').value })
+    method: 'POST', mode: 'no-cors',
+    body: JSON.stringify({ type: 'pledge', name: name, phone: document.getElementById('pledge-phone').value, amount: amount, reminderWhen: reminderWhen, reminderHow: reminderHow, message: document.getElementById('pledge-message').value })
   });
   document.getElementById('pledge-success').style.display = 'block';
-  ['pledge-name','pledge-phone','pledge-email','pledge-amount','pledge-message'].forEach(id => document.getElementById(id).value = '');
+  ['pledge-name','pledge-phone','pledge-email','pledge-amount','pledge-message'].forEach(function(id) { document.getElementById(id).value = ''; });
   document.getElementById('pledge-reminder-when').value = '';
-  document.querySelectorAll('input[name="reminder-how"]').forEach(r => r.checked = false);
-  document.querySelectorAll('.amount-chip').forEach(c => c.classList.remove('active'));
-  setTimeout(() => { document.getElementById('pledge-success').style.display = 'none'; }, 5000);
+  document.querySelectorAll('input[name="reminder-how"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('.amount-chip').forEach(function(c) { c.classList.remove('active'); });
+  setTimeout(function() { document.getElementById('pledge-success').style.display = 'none'; }, 5000);
 }
 
-// RSVP logic
-const rsvpData = [];
+var rsvpData = [];
 function handleAttending(el) {
   document.getElementById('plus-one-section').classList.toggle('show', el.value === 'yes');
 }
-document.querySelectorAll('input[name="plusone"]').forEach(r => {
-  r.addEventListener('change', e => {
+document.querySelectorAll('input[name="plusone"]').forEach(function(r) {
+  r.addEventListener('change', function(e) {
     document.getElementById('plusone-name-row').style.display = e.target.value === 'yes' ? 'grid' : 'none';
   });
 });
 function submitRSVP() {
-  const name = document.getElementById('rsvp-name').value.trim();
-  const phone = document.getElementById('rsvp-phone').value.trim();
-  const attending = document.querySelector('input[name="attending"]:checked');
+  var name = document.getElementById('rsvp-name').value.trim();
+  var phone = document.getElementById('rsvp-phone').value.trim();
+  var attending = document.querySelector('input[name="attending"]:checked');
   if (!name) { alert('Please enter your name.'); return; }
   if (!attending) { alert('Please indicate whether you are attending.'); return; }
-  const plusoneChecked = document.querySelector('input[name="plusone"]:checked');
-  const plusone = plusoneChecked ? plusoneChecked.value : 'no';
-  const plusoneName = document.getElementById('plusone-name').value.trim();
-  const email = document.getElementById('rsvp-email').value.trim();
-  const notes = document.getElementById('rsvp-notes').value.trim();
+  var plusoneChecked = document.querySelector('input[name="plusone"]:checked');
+  var plusone = plusoneChecked ? plusoneChecked.value : 'no';
+  var plusoneName = document.getElementById('plusone-name').value.trim();
+  var email = document.getElementById('rsvp-email').value.trim();
+  var notes = document.getElementById('rsvp-notes').value.trim();
   fetch('https://script.google.com/macros/s/AKfycby2kSIPO0aPtz0MXV1ru7hBRvCk7Loi1RTkiPek44TDHPNsATOgWJjwwOTBKZfijtOu/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify({ type: 'rsvp', name, phone, email, attending: attending.value, plusone, plusoneName, notes })
+    method: 'POST', mode: 'no-cors',
+    body: JSON.stringify({ type: 'rsvp', name: name, phone: phone, email: email, attending: attending.value, plusone: plusone, plusoneName: plusoneName, notes: notes })
   });
-  rsvpData.push({ name, phone, email, attending: attending.value, plusone, plusoneName, notes });
+  rsvpData.push({ name: name, phone: phone, email: email, attending: attending.value, plusone: plusone, plusoneName: plusoneName, notes: notes });
   refreshGuestTable(rsvpData);
   document.getElementById('rsvp-success').style.display = 'block';
-  ['rsvp-name','rsvp-phone','rsvp-email','rsvp-notes','plusone-name'].forEach(id => document.getElementById(id).value = '');
-  document.querySelectorAll('input[name="attending"],input[name="plusone"]').forEach(r => r.checked = false);
+  ['rsvp-name','rsvp-phone','rsvp-email','rsvp-notes','plusone-name'].forEach(function(id) { document.getElementById(id).value = ''; });
+  document.querySelectorAll('input[name="attending"],input[name="plusone"]').forEach(function(r) { r.checked = false; });
   document.getElementById('plus-one-section').classList.remove('show');
   document.getElementById('plusone-name-row').style.display = 'none';
-  setTimeout(() => { document.getElementById('rsvp-success').style.display = 'none'; }, 5000);
+  setTimeout(function() { document.getElementById('rsvp-success').style.display = 'none'; }, 5000);
 }
 
 function refreshGuestTable(data) {
-  const tbody = document.getElementById('guest-tbody');
-  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--muted);font-style:italic;font-size:.85rem;">No guests yet.</td></tr>'; return; }
-  tbody.innerHTML = data.map((g, i) => `
-    <tr>
-      <td>${i+1}</td>
-      <td>${g.name}</td>
-      <td>${g.phone || '—'}</td>
-      <td><span class="badge badge-${g.attending === 'yes' ? 'yes' : 'no'}">${g.attending === 'yes' ? 'Attending' : 'Not attending'}</span></td>
-      <td><span class="badge badge-${g.plusone === 'yes' ? 'yes' : 'no'}">${g.plusone === 'yes' ? 'Yes' : 'No'}</span></td>
-      <td>${g.plusoneName || '—'}</td>
-    </tr>`).join('');
+  var tbody = document.getElementById('guest-tbody');
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--muted);font-style:italic;font-size:.85rem;">No guests yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = data.map(function(g, i) {
+    return '<tr><td>' + (i+1) + '</td><td>' + g.name + '</td><td>' + (g.phone||'—') + '</td>' +
+      '<td><span class="badge badge-' + (g.attending==='yes'?'yes':'no') + '">' + (g.attending==='yes'?'Attending':'Not attending') + '</span></td>' +
+      '<td><span class="badge badge-' + (g.plusone==='yes'?'yes':'no') + '">' + (g.plusone==='yes'?'Yes':'No') + '</span></td>' +
+      '<td>' + (g.plusoneName||'—') + '</td></tr>';
+  }).join('');
 }
 
-// Load Excel guest list
 function loadGuestList(event) {
-  const file = event.target.files[0];
+  var file = event.target.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
+  var reader = new FileReader();
+  reader.onload = function(e) {
     try {
-      const wb = XLSX.read(e.target.result, { type: 'binary' });
-      const ws = wb.Sheets[wb.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(ws, { header: 1 });
-      const headers = rows[0] ? rows[0].map(h => String(h).toLowerCase().trim()) : [];
-      const find = (keys) => keys.reduce((acc, k) => acc !== -1 ? acc : headers.findIndex(h => h.includes(k)), -1);
-      const nameIdx = find(['name','guest']);
-      const phoneIdx = find(['phone','mobile','tel','whatsapp']);
-      const attendingIdx = find(['attend','coming','rsvp','status']);
-      const plusoneIdx = find(['plus','guest 2','guest2','partner']);
-      const plusoneNameIdx = find(['plus one name','partner name','guest 2 name']);
-      const data = rows.slice(1).filter(r => r.some(c => c)).map((r, i) => ({
-        name: nameIdx >= 0 ? (r[nameIdx] || '—') : ('Guest ' + (i+1)),
-        phone: phoneIdx >= 0 ? (r[phoneIdx] || '—') : '—',
-        attending: attendingIdx >= 0 ? (String(r[attendingIdx] || '').toLowerCase().includes('yes') ? 'yes' : String(r[attendingIdx] || '').toLowerCase().includes('no') ? 'no' : 'pending') : 'pending',
-        plusone: plusoneIdx >= 0 ? (String(r[plusoneIdx] || '').toLowerCase().includes('yes') ? 'yes' : 'no') : 'no',
-        plusoneName: plusoneNameIdx >= 0 ? (r[plusoneNameIdx] || '—') : '—',
-        notes: ''
-      }));
+      var wb = XLSX.read(e.target.result, { type: 'binary' });
+      var ws = wb.Sheets[wb.SheetNames[0]];
+      var rows = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      var headers = rows[0] ? rows[0].map(function(h) { return String(h).toLowerCase().trim(); }) : [];
+      function find(keys) { return keys.reduce(function(acc,k){ return acc !== -1 ? acc : headers.findIndex(function(h){ return h.includes(k); }); }, -1); }
+      var nameIdx = find(['name','guest']);
+      var phoneIdx = find(['phone','mobile','tel','whatsapp']);
+      var attendingIdx = find(['attend','coming','rsvp','status']);
+      var plusoneIdx = find(['plus','guest 2','guest2','partner']);
+      var plusoneNameIdx = find(['plus one name','partner name','guest 2 name']);
+      var data = rows.slice(1).filter(function(r){ return r.some(function(c){ return c; }); }).map(function(r,i) {
+        return {
+          name: nameIdx>=0 ? (r[nameIdx]||'—') : ('Guest '+(i+1)),
+          phone: phoneIdx>=0 ? (r[phoneIdx]||'—') : '—',
+          attending: attendingIdx>=0 ? (String(r[attendingIdx]||'').toLowerCase().includes('yes')?'yes':String(r[attendingIdx]||'').toLowerCase().includes('no')?'no':'pending') : 'pending',
+          plusone: plusoneIdx>=0 ? (String(r[plusoneIdx]||'').toLowerCase().includes('yes')?'yes':'no') : 'no',
+          plusoneName: plusoneNameIdx>=0 ? (r[plusoneNameIdx]||'—') : '—',
+          notes: ''
+        };
+      });
       rsvpData.length = 0;
-      data.forEach(d => rsvpData.push(d));
+      data.forEach(function(d) { rsvpData.push(d); });
       refreshGuestTable(rsvpData);
     } catch(err) {
       alert('Could not read the file. Please make sure it is a valid .xlsx or .csv file.');
@@ -768,6 +744,7 @@ function loadGuestList(event) {
   reader.readAsBinaryString(file);
 }
 </script>
+
 <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
   <button class="mob-nav-btn active" id="mob-home" onclick="showPage('home')">
     <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -785,10 +762,11 @@ function loadGuestList(event) {
     <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
     <span>Support</span>
   </button>
-  <button class="mob-nav-btn" id="mob-registry" onclick="showPage('registry')">
-    <svg viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-    <span>Gifts</span>
+  <button class="mob-nav-btn" id="mob-funfacts" onclick="showPage('funfacts')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <span>Fun Facts</span>
   </button>
 </nav>
+
 </body>
 </html>
